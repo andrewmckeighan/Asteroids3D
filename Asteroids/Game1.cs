@@ -14,7 +14,7 @@ namespace Asteroids
         SpriteBatch spriteBatch;
         private Matrix world = Matrix.CreateTranslation(new Vector3(10, 0, 0));//Where the vertices are in relationship to the whole world.
         private Matrix view = Matrix.CreateLookAt(new Vector3(-10, 0, 10), new Vector3(0, 0, 0), Vector3.UnitY);//Puts coordinates into view space. Where vertices are in relation to the viewer.
-        private Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 480f, 0.1f, 100f);//Where on the screen vertices should appear. Camera control.
+        private Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 480f, 0.1f, 1000f);//Where on the screen vertices should appear. Camera control.
         
         Effect effect;
         private Model playerModel;
