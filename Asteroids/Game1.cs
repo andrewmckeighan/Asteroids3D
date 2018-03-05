@@ -110,7 +110,7 @@ namespace Asteroids
 
         private void DrawPlayerModel(Model model, Matrix view, Matrix projection)
         {
-            Matrix worldMatrix = Matrix.CreateScale(0.01f, 0.01f, 0.01f) * Matrix.CreateRotationY(MathHelper.Pi) * Matrix.CreateFromQuaternion(playerRotation) * Matrix.CreateTranslation(playerPosition);
+            Matrix worldMatrix = Matrix.CreateScale(0.01f, 0.01f, 0.01f) * Matrix.CreateRotationY(MathHelper.Pi) * Matrix.CreateRotationZ(MathHelper.Pi/2) * Matrix.CreateFromQuaternion(playerRotation) * Matrix.CreateTranslation(playerPosition);
             foreach (ModelMesh mesh in model.Meshes)
             {
                 foreach (BasicEffect effect in mesh.Effects)
@@ -154,14 +154,14 @@ namespace Asteroids
             turningSpeed *= 1.6f * gameSpeed;
             KeyboardState keys = Keyboard.GetState();
 
-            if (keys.IsKeyDown(Keys.D))
-                leftRightRot += turningSpeed;
             if (keys.IsKeyDown(Keys.A))
+                leftRightRot += turningSpeed;
+            if (keys.IsKeyDown(Keys.D))
                 leftRightRot -= turningSpeed;
          
-            if (keys.IsKeyDown(Keys.S))
-                upDownRot += turningSpeed;
             if (keys.IsKeyDown(Keys.W))
+                upDownRot += turningSpeed;
+            if (keys.IsKeyDown(Keys.S))
                 upDownRot -= turningSpeed;
 
             
@@ -182,7 +182,7 @@ namespace Asteroids
         }
         private void UpdateCamera()
         {
-            Vector3 campos = new Vector3(0, 0.2f, -0.6f);
+            Vector3 campos = new Vector3(0, 0.02f, -0.2f);
             campos = Vector3.Transform(campos, Matrix.CreateFromQuaternion(playerRotation));
             campos += playerPosition;
 
