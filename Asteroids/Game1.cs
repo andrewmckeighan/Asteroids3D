@@ -14,7 +14,10 @@ namespace Asteroids
         GraphicsDeviceManager graphics;
         GraphicsDevice device;
         SpriteBatch spriteBatch;
-        public static Vector3 campos;
+        public static Vector3 campos {
+            get;
+            private set;
+        }
         public static Matrix world = Matrix.CreateTranslation(new Vector3(10, 0, 0));//Where the vertices are in relationship to the whole world.
         private Matrix view = Matrix.CreateLookAt(new Vector3(0, 0, 10), new Vector3(0, 0, 0), Vector3.UnitY);//Puts coordinates into view space. Where vertices are in relation to the viewer.
         private Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 480f, 0.1f, 1000f);//Where on the screen vertices should appear. Camera control.
@@ -65,8 +68,7 @@ namespace Asteroids
             playerTexture = Content.Load<Texture2D>("shipTexture");
             playerModel = Content.Load<Model>("spaceship");
             
-            
-            // TODO: use this.Content to load your game content here
+
         }
 
         /// <summary>
@@ -91,7 +93,6 @@ namespace Asteroids
             float moveSpeed = gameTime.ElapsedGameTime.Milliseconds / 80.0f * gameSpeed;
             
             ProcessKeyboard(gameTime, ref playerPosition);
-            
             MoveForward(ref playerPosition, playerRotation, moveSpeed);
             UpdateCamera();
             // TODO: Add your update logic here
@@ -112,6 +113,7 @@ namespace Asteroids
             base.Draw(gameTime);
         }
 
+
         private void DrawPlayerModel(Model model, Matrix view, Matrix projection)
         {
             Matrix worldMatrix = Matrix.CreateScale(0.01f, 0.01f, 0.01f) * Matrix.CreateRotationY(MathHelper.Pi) * Matrix.CreateRotationZ(MathHelper.Pi/2) * Matrix.CreateFromQuaternion(playerRotation) * Matrix.CreateTranslation(playerPosition);
@@ -131,6 +133,7 @@ namespace Asteroids
             }
         }
 
+
         private void DrawSkybox(Model model,  Matrix view, Matrix projection)
         {
             foreach (ModelMesh mesh in model.Meshes)
@@ -148,12 +151,12 @@ namespace Asteroids
             }
         }
 
+
         //help from http://www.riemers.net/eng/Tutorials/XNA/Csharp/Series2/Flight_kinematics.php
         private void ProcessKeyboard(GameTime gameTime, ref Vector3 playerPosition)
         {
             float leftRightRot = 0;
             float upDownRot = 0;
-
             float turningSpeed = (float)gameTime.ElapsedGameTime.TotalMilliseconds / 2000.0f;
             turningSpeed *= 1.6f * gameSpeed;
             KeyboardState keys = Keyboard.GetState();
@@ -162,17 +165,17 @@ namespace Asteroids
                 leftRightRot += turningSpeed;
             if (keys.IsKeyDown(Keys.D))
                 leftRightRot -= turningSpeed;
-         
             if (keys.IsKeyDown(Keys.W))
                 upDownRot += turningSpeed;
             if (keys.IsKeyDown(Keys.S))
                 upDownRot -= turningSpeed;
-
             
-
             Quaternion additionalRot = Quaternion.CreateFromAxisAngle(new Vector3(0, 0, -1), leftRightRot) * Quaternion.CreateFromAxisAngle(new Vector3(1, 0, 0), upDownRot);
             playerRotation *= additionalRot;
         }
+
+
+
         private void MoveForward(ref Vector3 position, Quaternion rotationQuat, float speed)
         {
             Vector3 addVector = Vector3.Transform(new Vector3(0, 0, -1), rotationQuat);
@@ -181,9 +184,9 @@ namespace Asteroids
                 position -= addVector * speed;
             if (keys.IsKeyDown(Keys.LeftControl))
                 position += addVector * speed;
-
-
         }
+
+
         private void UpdateCamera()
         {
             campos = new Vector3(0, 0.02f, -0.2f);

@@ -81,7 +81,7 @@ namespace Asteroids
                     effect.EnableDefaultLighting();
                     effect.PreferPerPixelLighting = true;
                     effect.World = ConversionHelper.MathConverter.Convert(physicsObject.WorldTransform);
-                    //effect.View = Matrix.CreateLookAt(Ape.CameraPosition, Vector3.Forward, Vector3.Up);
+                    effect.View = Matrix.CreateLookAt(Game1.campos, Vector3.Forward, Vector3.Up);
                     float aspectRatio = Game.GraphicsDevice.Viewport.AspectRatio;
                     float fieldOfView = Microsoft.Xna.Framework.MathHelper.PiOver4;
                     float nearClipPlane = 1;
