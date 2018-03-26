@@ -19,7 +19,7 @@ namespace Asteroids
             private set;
         }
         public static Matrix world = Matrix.CreateTranslation(new Vector3(10, 0, 0));//Where the vertices are in relationship to the whole world.
-        private Matrix view = Matrix.CreateLookAt(new Vector3(0, 0, 10), new Vector3(0, 0, 0), Vector3.UnitY);//Puts coordinates into view space. Where vertices are in relation to the viewer.
+        public static Matrix view = Matrix.CreateLookAt(new Vector3(0, 0, 10), new Vector3(0, 0, 0), Vector3.UnitY);//Puts coordinates into view space. Where vertices are in relation to the viewer.
         private Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 480f, 0.1f, 1000f);//Where on the screen vertices should appear. Camera control.
         
         Effect effect;
@@ -27,7 +27,7 @@ namespace Asteroids
         private Texture2D playerTexture;
         private Model skyboxModel;
         private Texture2D skyboxTexture;
-        private Vector3 playerPosition = new Vector3(0,0,0);
+        public static Vector3 playerPosition = new Vector3(0,0,0);
         private Quaternion playerRotation = Quaternion.Identity;
         float gameSpeed = 1.0f;
 

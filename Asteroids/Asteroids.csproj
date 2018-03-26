@@ -48,16 +48,16 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="BEPUik">
-      <HintPath>..\..\..\..\Downloads\BEPUphysics.v1.5.0\BEPUik.dll</HintPath>
+      <HintPath>..\..\..\..\..\Downloads\AsteroidsPhysicsExample\AsteroidsPhysicsExample\AsteroidsPhysicsExample\bin\Windows\x86\Debug\BEPUik.dll</HintPath>
     </Reference>
     <Reference Include="BEPUphysics">
-      <HintPath>..\..\..\..\Downloads\BEPUphysics.v1.5.0\BEPUphysics.dll</HintPath>
+      <HintPath>..\..\..\..\..\Downloads\AsteroidsPhysicsExample\AsteroidsPhysicsExample\AsteroidsPhysicsExample\bin\Windows\x86\Debug\BEPUphysics.dll</HintPath>
     </Reference>
     <Reference Include="BEPUutilities">
-      <HintPath>..\..\..\..\Downloads\BEPUphysics.v1.5.0\BEPUutilities.dll</HintPath>
+      <HintPath>..\..\..\..\..\Downloads\AsteroidsPhysicsExample\AsteroidsPhysicsExample\AsteroidsPhysicsExample\bin\Windows\x86\Debug\BEPUutilities.dll</HintPath>
     </Reference>
     <Reference Include="ConversionHelper">
-      <HintPath>..\..\..\..\Downloads\BEPUphysicsDemos.v1.5.0\ConversionHelper.dll</HintPath>
+      <HintPath>..\..\..\..\..\Downloads\AsteroidsPhysicsExample\AsteroidsPhysicsExample\AsteroidsPhysicsExample\bin\Windows\x86\Debug\ConversionHelper.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
