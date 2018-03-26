@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using BEPUphysics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
@@ -13,7 +14,8 @@ namespace Asteroids
         GraphicsDeviceManager graphics;
         GraphicsDevice device;
         SpriteBatch spriteBatch;
-        private Matrix world = Matrix.CreateTranslation(new Vector3(10, 0, 0));//Where the vertices are in relationship to the whole world.
+        public static Vector3 campos;
+        public static Matrix world = Matrix.CreateTranslation(new Vector3(10, 0, 0));//Where the vertices are in relationship to the whole world.
         private Matrix view = Matrix.CreateLookAt(new Vector3(0, 0, 10), new Vector3(0, 0, 0), Vector3.UnitY);//Puts coordinates into view space. Where vertices are in relation to the viewer.
         private Matrix projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 480f, 0.1f, 1000f);//Where on the screen vertices should appear. Camera control.
         
@@ -42,7 +44,9 @@ namespace Asteroids
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            Services.AddService<Space>(new Space());
+            new Cell(this, new Vector3(-2, 0, -5), 2, new Vector3(0.2f, 0, 0), new Vector3( 0.3f, 0.5f, 0.5f));
+            new Cell(this, new Vector3(2, 0, -5), 3, new Vector3(-0.2f, 0, 0), new Vector3( -0.5f, -0.6f, 0.2f));
             base.Initialize();
         }
 
@@ -182,7 +186,7 @@ namespace Asteroids
         }
         private void UpdateCamera()
         {
-            Vector3 campos = new Vector3(0, 0.02f, -0.2f);
+            campos = new Vector3(0, 0.02f, -0.2f);
             campos = Vector3.Transform(campos, Matrix.CreateFromQuaternion(playerRotation));
             campos += playerPosition;
 

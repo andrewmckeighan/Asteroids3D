@@ -41,19 +41,23 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Cell.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="BEPUik, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BEPUphysics.1.5.0\lib\net461\BEPUik.dll</HintPath>
+    <Reference Include="BEPUik">
+      <HintPath>..\..\..\..\Downloads\BEPUphysics.v1.5.0\BEPUik.dll</HintPath>
     </Reference>
-    <Reference Include="BEPUphysics, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BEPUphysics.1.5.0\lib\net461\BEPUphysics.dll</HintPath>
+    <Reference Include="BEPUphysics">
+      <HintPath>..\..\..\..\Downloads\BEPUphysics.v1.5.0\BEPUphysics.dll</HintPath>
     </Reference>
-    <Reference Include="BEPUutilities, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BEPUphysics.1.5.0\lib\net461\BEPUutilities.dll</HintPath>
+    <Reference Include="BEPUutilities">
+      <HintPath>..\..\..\..\Downloads\BEPUphysics.v1.5.0\BEPUutilities.dll</HintPath>
+    </Reference>
+    <Reference Include="ConversionHelper">
+      <HintPath>..\..\..\..\Downloads\BEPUphysicsDemos.v1.5.0\ConversionHelper.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
@@ -67,7 +71,6 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
