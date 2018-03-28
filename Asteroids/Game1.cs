@@ -48,7 +48,7 @@ namespace Asteroids
         {
             // TODO: Add your initialization logic here
             Services.AddService<Space>(new Space());
-            new Cell(this, new Vector3(-2, 0, -5), 2, new Vector3(0.2f, 0, 0), new Vector3( 0.3f, 0.5f, 0.5f));
+            new Cell(this, new Vector3(-2, 0, -5), 1, new Vector3(0.30f, 0, 0), new Vector3( 0.3f, 0.5f, 0.5f));
             new Cell(this, new Vector3(2, 0, -5), 3, new Vector3(-0.2f, 0, 0), new Vector3( -0.5f, -0.6f, 0.2f));
             base.Initialize();
         }
@@ -96,6 +96,7 @@ namespace Asteroids
             MoveForward(ref playerPosition, playerRotation, moveSpeed);
             UpdateCamera();
             // TODO: Add your update logic here
+            Services.GetService<Space>().Update((float)gameTime.ElapsedGameTime.TotalSeconds);
 
             base.Update(gameTime);
         }
