@@ -36,8 +36,8 @@ namespace Asteroids
             physicsObject.LinearDamping = 0f;
             Game.Services.GetService<Space>().Add(physicsObject);
         }
-        
-        public Cell(Game game, Vector3 pos, float mass) : this(game, pos )
+
+        public Cell(Game game, Vector3 pos, float mass) : this(game, pos)
         {
             physicsObject.Mass = mass;
         }
@@ -51,10 +51,20 @@ namespace Asteroids
         {
             physicsObject.AngularMomentum = ConversionHelper.MathConverter.Convert(angMomentum);
         }
- 
+
         public override void Initialize()
         {
             base.Initialize();
+        }
+
+        public BoundingSphere getBoundingSphere()
+        {
+
+            return model.Meshes[0].BoundingSphere;
+        }
+        public Matrix getWorld()
+        {
+            return ConversionHelper.MathConverter.Convert(physicsObject.WorldTransform);
         }
 
         protected override void LoadContent()

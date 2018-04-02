@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
+using System.Collections;
 
 namespace Asteroids
 {
@@ -30,8 +31,9 @@ namespace Asteroids
         public static Vector3 playerPosition = new Vector3(0,0,0);
         private Quaternion playerRotation = Quaternion.Identity;
         float gameSpeed = 1.0f;
-
-
+        private ArrayList cells;
+        Cell testing;
+        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -47,9 +49,12 @@ namespace Asteroids
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            cells = new ArrayList();
             Services.AddService<Space>(new Space());
-            new Cell(this, new Vector3(-2, 0, -5), 1, new Vector3(0.30f, 0, 0), new Vector3( 0.3f, 0.5f, 0.5f));
-            new Cell(this, new Vector3(2, 0, -5), 3, new Vector3(-0.2f, 0, 0), new Vector3( -0.5f, -0.6f, 0.2f));
+            
+            cells.Add(new Cell(this, new Vector3(-2, 0, -5), 1, new Vector3(0.30f, 0, 0), new Vector3( 0.3f, 0.5f, 0.5f)));
+            cells.Add(new Cell(this, new Vector3(2, 0, -5), 3, new Vector3(-0.2f, 0, 0), new Vector3(-0.5f, -0.6f, 0.2f)));
+            testing = new Cell(this, new Vector3(2, 0, 5), 3, new Vector3(-0.2f, 0, 0), new Vector3(-0.5f, -0.6f, 0.2f));
             base.Initialize();
         }
 
@@ -97,7 +102,8 @@ namespace Asteroids
             UpdateCamera();
             // TODO: Add your update logic here
             Services.GetService<Space>().Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-
+            System.Diagnostics.Debug.Write(testing.getWorld());
+            PlayerCollision();
             base.Update(gameTime);
         }
 
@@ -199,6 +205,20 @@ namespace Asteroids
 
             view = Matrix.CreateLookAt(campos, playerPosition, camup);
             projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, device.Viewport.AspectRatio, 0.2f, 500.0f);
+        }
+
+        private void PlayerCollision()
+        {
+            BoundingSphere playerSphere = new BoundingSphere(playerPosition, 0.04f);
+            foreach (Cell c in cells)
+            {
+                BoundingSphere cSphere = c.getBoundingSphere();
+                cSphere.Transform(c.getWorld());
+                if (playerSphere.Intersects(cSphere))
+                {
+                    System.Diagnostics.Debug.Write("COLLISION");
+                }
+            }
         }
 
     }
